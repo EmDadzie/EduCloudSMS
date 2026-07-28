@@ -1,16 +1,73 @@
-<!DOCTYPE html>
-<html>
-<head>
-    <title>EduCloudSMS Dashboard</title>
-</head>
+{% extends "base.html" %}
 
-<body>
+{% block content %}
 
-<h1>Welcome to EduCloudSMS</h1>
+<div class="row">
 
-<p>
-Logged in as: {{ request.user.username }}
-</p>
+    <div class="col-md-3">
 
-</body>
-</html>
+        <div class="card shadow-sm">
+
+            <div class="card-body">
+
+                <h6>Total Students</h6>
+
+                <h2>{{ total_students }}</h2>
+
+            </div>
+
+        </div>
+
+    </div>
+
+    <div class="col-md-3">
+
+        <div class="card shadow-sm">
+
+            <div class="card-body">
+
+                <h6>Total Teachers</h6>
+
+                <h2>{{ total_teachers }}</h2>
+
+            </div>
+
+        </div>
+
+    </div>
+
+    <div class="col-md-3">
+
+        <div class="card shadow-sm">
+
+            <div class="card-body">
+
+                <h6>Total Classes</h6>
+
+                <h2>{{ total_classes }}</h2>
+
+            </div>
+
+        </div>
+
+    </div>
+
+    <div class="col-md-3">
+
+        <div class="card shadow-sm">
+
+            <div class="card-body">
+
+                <h6>Total Subjects</h6>
+
+                <h2>{{ total_subjects }}</h2>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+{% endblock %}
