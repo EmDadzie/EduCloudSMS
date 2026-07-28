@@ -1,0 +1,71 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<div class="card shadow">
+
+<div class="card-body">
+
+<h3>
+Enter Scores
+</h3>
+
+<p>
+{{ assessment.title }}
+</p>
+
+
+<form method="POST">
+
+{% csrf_token %}
+
+
+<table class="table table-bordered">
+
+<tr>
+<th>Student</th>
+<th>Score</th>
+</tr>
+
+
+{% for student in students %}
+
+<tr>
+
+<td>
+{{ student.first_name }} {{ student.last_name }}
+</td>
+
+
+<td>
+
+<input 
+type="number"
+name="student_{{ student.id }}"
+class="form-control"
+>
+
+
+</td>
+
+</tr>
+
+{% endfor %}
+
+
+</table>
+
+
+<button class="btn btn-primary">
+Save Scores
+</button>
+
+
+</form>
+
+
+</div>
+
+</div>
+
+{% endblock %}
