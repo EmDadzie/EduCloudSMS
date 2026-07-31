@@ -2,234 +2,76 @@
 
 {% block content %}
 
-<!-- Dashboard Header -->
-
-<div class="dashboard-header mb-4">
-
-    <div class="row align-items-center">
-
-        <div class="col-md-8">
-
-            <h2 class="fw-bold mb-1">
-                Welcome back,
-                {{ request.user.first_name|default:request.user.username }} 👋
-            </h2>
-
-            <p class="text-muted mb-0">
-                Here's what's happening in your school today.
-            </p>
-
-        </div>
-
-        <div class="col-md-4 text-end">
-
-            <span class="badge bg-primary fs-6">
-
-                Academic Year:
-                {{ school.academic_year }}
-
-            </span>
-
-        </div>
-
-    </div>
-
-</div>
-
-<!-- Statistics -->
+<h2 class="mb-4">Dashboard</h2>
 
 <div class="row g-4">
 
-    <!-- Students -->
-
+    <!-- Students Card -->
     <div class="col-md-3">
-
         <div class="card stat-card student-card shadow-sm">
-
             <div class="card-body">
-
                 <div class="d-flex justify-content-between align-items-center">
-
                     <div>
-
-                        <h6 class="text-muted">Students</h6>
-
-                        <h2 class="fw-bold">
-                            {{ total_students }}
-                        </h2>
-
-                        <small class="text-muted">
-                            Registered Students
-                        </small>
-
-                        <div class="mt-2">
-
-                            <span class="text-success fw-semibold">
-
-                                ▲ Operational
-
-                            </span>
-
-                        </div>
-
+                        <h6 class="text-muted">Total Students</h6>
+                        <h2>{{ total_students }}</h2>
                     </div>
-
                     <div class="stat-icon students">
-
                         <i class="bi bi-people-fill"></i>
-
                     </div>
-
                 </div>
-
             </div>
-
         </div>
-
     </div>
 
-    <!-- Teachers -->
-
+    <!-- Teachers Card -->
     <div class="col-md-3">
-
         <div class="card stat-card teacher-card shadow-sm">
-
             <div class="card-body">
-
                 <div class="d-flex justify-content-between align-items-center">
-
                     <div>
-
-                        <h6 class="text-muted">Teachers</h6>
-
-                        <h2 class="fw-bold">
-                            {{ total_teachers }}
-                        </h2>
-
-                        <small class="text-muted">
-                            Active Teachers
-                        </small>
-
-                        <div class="mt-2">
-
-                            <span class="text-success fw-semibold">
-
-                                ▲ Operational
-
-                            </span>
-
-                        </div>
-
+                        <h6 class="text-muted">Total Teachers</h6>
+                        <h2>{{ total_teachers }}</h2>
                     </div>
-
                     <div class="stat-icon teachers">
-
                         <i class="bi bi-person-workspace"></i>
-
                     </div>
-
                 </div>
-
             </div>
-
         </div>
-
     </div>
 
-    <!-- Classes -->
-
+    <!-- Classes Card -->
     <div class="col-md-3">
-
         <div class="card stat-card class-card shadow-sm">
-
             <div class="card-body">
-
                 <div class="d-flex justify-content-between align-items-center">
-
                     <div>
-
-                        <h6 class="text-muted">Classes</h6>
-
-                        <h2 class="fw-bold">
-                            {{ total_classes }}
-                        </h2>
-
-                        <small class="text-muted">
-                            Available Classes
-                        </small>
-
-                        <div class="mt-2">
-
-                            <span class="text-success fw-semibold">
-
-                                ▲ Operational
-
-                            </span>
-
-                        </div>
-
+                        <h6 class="text-muted">Total Classes</h6>
+                        <h2>{{ total_classes }}</h2>
                     </div>
-
                     <div class="stat-icon classes">
-
                         <i class="bi bi-building"></i>
-
                     </div>
-
                 </div>
-
             </div>
-
         </div>
-
     </div>
 
-    <!-- Subjects -->
-
+    <!-- Subjects Card -->
     <div class="col-md-3">
-
         <div class="card stat-card subject-card shadow-sm">
-
             <div class="card-body">
-
                 <div class="d-flex justify-content-between align-items-center">
-
                     <div>
-
-                        <h6 class="text-muted">Subjects</h6>
-
-                        <h2 class="fw-bold">
-                            {{ total_subjects }}
-                        </h2>
-
-                        <small class="text-muted">
-                            Subjects Offered
-                        </small>
-
-                        <div class="mt-2">
-
-                            <span class="text-success fw-semibold">
-
-                                ▲ Operational
-
-                            </span>
-
-                        </div>
-
+                        <h6 class="text-muted">Total Subjects</h6>
+                        <h2>{{ total_subjects }}</h2>
                     </div>
-
                     <div class="stat-icon subjects">
-
                         <i class="bi bi-book-fill"></i>
-
                     </div>
-
                 </div>
-
             </div>
-
         </div>
-
     </div>
 
 </div>
@@ -252,7 +94,7 @@
 
     <div class="card-body">
 
-        <div class="row text-center g-3">
+        <div class="row g-3 text-center">
 
             <div class="col-md-3">
                 <a href="/admin/students/student/add/" class="btn btn-primary w-100">

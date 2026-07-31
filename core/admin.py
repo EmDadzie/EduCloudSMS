@@ -6,7 +6,6 @@ from .models import School
 class SchoolAdmin(admin.ModelAdmin):
 
     list_display = (
-        "name",
+        "school_name",
         "academic_year",
-        "current_term",
     )

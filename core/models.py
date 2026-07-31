@@ -2,29 +2,17 @@ from django.db import models
 
 
 class School(models.Model):
-
-    name = models.CharField(max_length=200)
+    school_name = models.CharField(
+        max_length=200
+    )
 
     motto = models.CharField(
         max_length=255,
         blank=True
     )
 
-    address = models.TextField(
-        blank=True
-    )
-
-    phone = models.CharField(
-        max_length=20,
-        blank=True
-    )
-
-    email = models.EmailField(
-        blank=True
-    )
-
     logo = models.ImageField(
-        upload_to="school_logo/",
+        upload_to="school_logos/",
         blank=True,
         null=True
     )
@@ -34,17 +22,36 @@ class School(models.Model):
         default="2026/2027"
     )
 
-    CURRENT_TERM = [
-        ("Term 1", "Term 1"),
-        ("Term 2", "Term 2"),
-        ("Term 3", "Term 3"),
-    ]
-
-    current_term = models.CharField(
-        max_length=10,
-        choices=CURRENT_TERM,
-        default="Term 1"
+    email = models.EmailField(
+        blank=True
     )
 
+    phone = models.CharField(
+        max_length=20,
+        blank=True
+    )
+
+    website = models.URLField(
+        blank=True
+    )
+
+    address = models.TextField(
+        blank=True
+    )
+
+    primary_color = models.CharField(
+        max_length=7,
+        default="#0A2540"
+    )
+
+    secondary_color = models.CharField(
+        max_length=7,
+        default="#C9A227"
+    )
+
+    class Meta:
+        verbose_name = "School"
+        verbose_name_plural = "School"
+
     def __str__(self):
-        return self.name
+        return self.school_name

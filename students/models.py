@@ -94,7 +94,7 @@ class Student(models.Model):
                 number = 1
 
             self.admission_number = (
-                f"ADB-{year}-{number:04d}"
+                f"ABIS-{year}-{number:04d}"
             )
 
         super().save(*args, **kwargs)

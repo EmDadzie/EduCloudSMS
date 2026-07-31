@@ -1,13 +1,19 @@
 from django.db import models
-from accounts.models import User
 
 
 class Teacher(models.Model):
 
-    user = models.OneToOneField(
-        User,
-        on_delete=models.CASCADE,
-        limit_choices_to={'role': 'TEACHER'}
+    class Gender(models.TextChoices):
+        MALE = "Male", "Male"
+        FEMALE = "Female", "Female"
+
+    first_name = models.CharField(max_length=50)
+
+    last_name = models.CharField(max_length=50)
+
+    gender = models.CharField(
+        max_length=10,
+        choices=Gender.choices
     )
 
     staff_id = models.CharField(
@@ -16,16 +22,27 @@ class Teacher(models.Model):
     )
 
     phone = models.CharField(
-        max_length=15
+        max_length=20,
+        blank=True
     )
 
-    qualification = models.CharField(
-        max_length=100
+    email = models.EmailField(
+        blank=True
+    )
+
+    photo = models.ImageField(
+        upload_to="teacher_photos/",
+        blank=True,
+        null=True
     )
 
     date_joined = models.DateField(
         auto_now_add=True
     )
 
+    active = models.BooleanField(
+        default=True
+    )
+
     def __str__(self):
-        return self.user.get_full_name()
+        return f"{self.first_name} {self.last_name}"

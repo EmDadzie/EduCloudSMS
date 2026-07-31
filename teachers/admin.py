@@ -4,10 +4,31 @@ from .models import Teacher
 
 @admin.register(Teacher)
 class TeacherAdmin(admin.ModelAdmin):
+
     list_display = (
-        'staff_id',
-        'user',
-        'phone',
-        'qualification',
-        'date_joined'
+        "staff_id",
+        "first_name",
+        "last_name",
+        "gender",
+        "phone",
+        "email",
+        "active",
+    )
+
+    search_fields = (
+        "staff_id",
+        "first_name",
+        "last_name",
+        "phone",
+        "email",
+    )
+
+    list_filter = (
+        "gender",
+        "active",
+    )
+
+    ordering = (
+        "first_name",
+        "last_name",
     )
