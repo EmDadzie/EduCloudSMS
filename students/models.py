@@ -84,18 +84,9 @@ class Student(models.Model):
 
             year = timezone.now().year
 
-            last_student = Student.objects.order_by(
-                "-id"
-            ).first()
+            count = Student.objects.count() + 1
 
-            if last_student:
-                number = last_student.id + 1
-            else:
-                number = 1
-
-            self.admission_number = (
-                f"ABIS-{year}-{number:04d}"
-            )
+            self.admission_number = f"ST{year}{count:04d}"
 
         super().save(*args, **kwargs)
 

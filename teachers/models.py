@@ -1,4 +1,5 @@
 from django.db import models
+from django.utils import timezone
 
 
 class Teacher(models.Model):
@@ -18,7 +19,9 @@ class Teacher(models.Model):
 
     staff_id = models.CharField(
         max_length=20,
-        unique=True
+        unique=True,
+        blank=True,
+        editable=False
     )
 
     phone = models.CharField(
@@ -43,6 +46,46 @@ class Teacher(models.Model):
     active = models.BooleanField(
         default=True
     )
+
+    position = models.CharField(
+    max_length=50,
+    blank=True
+    )
+
+    qualification = models.CharField(
+        max_length=100,
+        blank=True
+    )
+
+    date_of_birth = models.DateField(
+        null=True,
+        blank=True
+    )
+
+    address = models.TextField(
+        blank=True
+    )
+
+    def save(self, *args, **kwargs):
+
+        if not self.staff_id:
+
+            year = str(timezone.now().year)[2:]
+
+            last_teacher = Teacher.objects.order_by("-id").first()
+
+            if last_teacher and last_teacher.staff_id:
+                try:
+                    last_number = int(last_teacher.staff_id[-4:])
+                    next_number = last_number + 1
+                except ValueError:
+                    next_number = 1
+            else:
+                next_number = 1
+
+            self.staff_id = f"STA{year}{next_number:04d}"
+
+        super().save(*args, **kwargs)
 
     def __str__(self):
         return f"{self.first_name} {self.last_name}"

@@ -29,6 +29,11 @@ class TeacherAdmin(admin.ModelAdmin):
     )
 
     ordering = (
-        "first_name",
-        "last_name",
+        "staff_id",
     )
+
+    list_editable = (
+        "active",
+    )
+
+    list_per_page = 20

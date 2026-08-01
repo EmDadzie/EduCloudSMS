@@ -2,26 +2,24 @@ from django.shortcuts import render
 
 from students.models import Student
 from teachers.models import Teacher
-from classes.models import ClassRoom
-from subjects.models import Subject
 
 
 def home(request):
 
     context = {
 
-        "total_students": Student.objects.count(),
+        "recent_students": Student.objects.order_by(
+            "-date_registered"
+        )[:5],
 
-        "total_teachers": Teacher.objects.count(),
-
-        "total_classes": ClassRoom.objects.count(),
-
-        "total_subjects": Subject.objects.count(),
+        "recent_teachers": Teacher.objects.order_by(
+            "-date_joined"
+        )[:5],
 
     }
 
     return render(
         request,
         "dashboard/home.html",
-        context
+        context,
     )

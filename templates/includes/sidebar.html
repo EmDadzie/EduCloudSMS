@@ -1,128 +1,570 @@
-<div class="col-lg-2 col-md-3 sidebar">
+<!-- =====================================================
+     SIDEBAR
+====================================================== -->
 
-    <div class="text-center mb-4">
+<aside class="sidebar" id="sidebar">
+
+    <!-- ==========================
+         SCHOOL HEADER
+    =========================== -->
+
+    <div class="sidebar-header">
 
         {% if school.logo %}
 
-            <img src="{{ school.logo.url }}"
-                 class="school-logo">
+            <img src="{{ school.logo.url }}" alt="{{ school.school_name }}">
 
         {% else %}
 
-            <div class="school-logo d-flex justify-content-center align-items-center">
-
-                <i class="bi bi-building-fill"></i>
-
-            </div>
+            <img src="https://placehold.co/120x120/png?text=School"
+                 alt="School Logo">
 
         {% endif %}
 
-        <h5 class="mt-3">
+        <h3 class="mt-3 mb-1">
 
-            {{ school.school_name }}
+            {{ school.school_name|default:"EduCloudSMS" }}
 
-        </h5>
+        </h3>
 
-        <small>
+        <small class="text-light">
 
-            {{ school.motto }}
+            School Management System
 
         </small>
 
     </div>
 
-    <hr>
+    <!-- ==========================
+            MENU
+    =========================== -->
 
-    <small class="menu-title">
+    <div class="px-3 mt-4">
 
-        MAIN MENU
+        <div class="accordion accordion-flush"
+             id="sidebarAccordion">
 
-    </small>
+            <!-- Dashboard -->
 
-    <a href="/dashboard/" class="nav-link">
+            <a href="{% url 'dashboard' %}"
 
-        <i class="bi bi-speedometer2"></i>
+               class="nav-link d-flex align-items-center py-3">
 
-        Dashboard
+                <i class="bi bi-speedometer2 fs-5"></i>
 
-    </a>
+                <span class="menu-text ms-3">
 
-    <a href="/admin/students/student/" class="nav-link">
+                    Dashboard
 
-        <i class="bi bi-people-fill"></i>
+                </span>
 
-        Students
+            </a>
 
-    </a>
+            <!-- ======================================
+                     STUDENTS
+            ======================================= -->
 
-    <a href="/admin/teachers/teacher/" class="nav-link">
+            <div class="accordion-item bg-transparent border-0">
 
-        <i class="bi bi-person-workspace"></i>
+                <h2 class="accordion-header">
 
-        Teachers
+                    <button class="accordion-button collapsed"
 
-    </a>
+                            type="button"
 
-    <a href="/admin/classes/classroom/" class="nav-link">
+                            data-bs-toggle="collapse"
 
-        <i class="bi bi-building"></i>
+                            data-bs-target="#studentsMenu">
 
-        Classes
+                        <i class="bi bi-mortarboard fs-5"></i>
 
-    </a>
+                        <span class="menu-text ms-3">
 
-    <a href="/admin/subjects/subject/" class="nav-link">
+                            Students
 
-        <i class="bi bi-book-fill"></i>
+                        </span>
 
-        Subjects
+                    </button>
 
-    </a>
+                </h2>
 
-    <a href="/admin/attendance/attendance/" class="nav-link">
+                <div id="studentsMenu"
 
-        <i class="bi bi-calendar-check-fill"></i>
+                     class="accordion-collapse collapse"
 
-        Attendance
+                     data-bs-parent="#sidebarAccordion">
 
-    </a>
+                    <div class="accordion-body">
 
-    <a href="/admin/assessments/score/" class="nav-link">
+                        <a href="{% url 'student_list' %}"
 
-        <i class="bi bi-pencil-square"></i>
+                           class="nav-link">
 
-        Scores
+                            <i class="bi bi-people"></i>
 
-    </a>
+                            <span class="menu-text ms-2">
 
-    <hr>
+                                All Students
 
-    <div class="small">
+                            </span>
 
-        <div class="d-flex justify-content-between">
+                        </a>
 
-            <span>Students</span>
+                        <a href="{% url 'student_create' %}"
 
-            <strong>{{ sidebar_students }}</strong>
+                           class="nav-link">
+
+                            <i class="bi bi-person-plus"></i>
+
+                            <span class="menu-text ms-2">
+
+                                Add Student
+
+                            </span>
+
+                        </a>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+            <!-- ======================================
+                     TEACHERS
+            ======================================= -->
+
+            <div class="accordion-item bg-transparent border-0">
+
+                <h2 class="accordion-header">
+
+                    <button class="accordion-button collapsed"
+
+                            type="button"
+
+                            data-bs-toggle="collapse"
+
+                            data-bs-target="#teachersMenu">
+
+                        <i class="bi bi-person-workspace fs-5"></i>
+
+                        <span class="menu-text ms-3">
+
+                            Teachers
+
+                        </span>
+
+                    </button>
+
+                </h2>
+
+                <div id="teachersMenu"
+
+                     class="accordion-collapse collapse"
+
+                     data-bs-parent="#sidebarAccordion">
+
+                    <div class="accordion-body">
+
+                        <a href="{% url 'teacher_list' %}"
+
+                           class="nav-link">
+
+                            <i class="bi bi-person-lines-fill"></i>
+
+                            <span class="menu-text ms-2">
+
+                                All Teachers
+
+                            </span>
+
+                        </a>
+
+                        <a href="{% url 'teacher_create' %}"
+
+                           class="nav-link">
+
+                            <i class="bi bi-person-plus-fill"></i>
+
+                            <span class="menu-text ms-2">
+
+                                Add Teacher
+
+                            </span>
+
+                        </a>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+            <!-- ======================================
+                     ACADEMICS
+            ======================================= -->
+
+            <div class="accordion-item bg-transparent border-0">
+
+                <h2 class="accordion-header">
+
+                    <button class="accordion-button collapsed"
+
+                            type="button"
+
+                            data-bs-toggle="collapse"
+
+                            data-bs-target="#academicsMenu">
+
+                        <i class="bi bi-book-half fs-5"></i>
+
+                        <span class="menu-text ms-3">
+
+                            Academics
+
+                        </span>
+
+                    </button>
+
+                </h2>
+
+                <div id="academicsMenu"
+
+                     class="accordion-collapse collapse"
+
+                     data-bs-parent="#sidebarAccordion">
+
+                    <div class="accordion-body">
+
+                        <a href="#"
+
+                           class="nav-link">
+
+                            <i class="bi bi-door-open"></i>
+
+                            <span class="menu-text ms-2">
+
+                                Classes
+
+                            </span>
+
+                        </a>
+
+                        <a href="#"
+
+                           class="nav-link">
+
+                            <i class="bi bi-journal-bookmark"></i>
+
+                            <span class="menu-text ms-2">
+
+                                Subjects
+
+                            </span>
+
+                        </a>
+
+                        <a href="#"
+
+                           class="nav-link">
+
+                            <i class="bi bi-calendar-check"></i>
+
+                            <span class="menu-text ms-2">
+
+                                Timetable
+
+                            </span>
+
+                        </a>
+
+                    </div>
+
+                </div>
+
+            </div>
+                        <!-- ======================================
+                     ATTENDANCE
+            ======================================= -->
+
+            <div class="accordion-item bg-transparent border-0">
+
+                <h2 class="accordion-header">
+
+                    <button class="accordion-button collapsed"
+                            type="button"
+                            data-bs-toggle="collapse"
+                            data-bs-target="#attendanceMenu">
+
+                        <i class="bi bi-calendar-check fs-5"></i>
+
+                        <span class="menu-text ms-3">
+
+                            Attendance
+
+                        </span>
+
+                    </button>
+
+                </h2>
+
+                <div id="attendanceMenu"
+                     class="accordion-collapse collapse"
+                     data-bs-parent="#sidebarAccordion">
+
+                    <div class="accordion-body">
+
+                        <a href="#"
+                           class="nav-link">
+
+                            <i class="bi bi-check2-square"></i>
+
+                            <span class="menu-text ms-2">
+
+                                Take Attendance
+
+                            </span>
+
+                        </a>
+
+                        <a href="#"
+                           class="nav-link">
+
+                            <i class="bi bi-clock-history"></i>
+
+                            <span class="menu-text ms-2">
+
+                                Attendance History
+
+                            </span>
+
+                        </a>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+            <!-- ======================================
+                     ASSESSMENTS
+            ======================================= -->
+
+            <a href="#"
+               class="nav-link d-flex align-items-center py-3">
+
+                <i class="bi bi-clipboard-data fs-5"></i>
+
+                <span class="menu-text ms-3">
+
+                    Assessments
+
+                </span>
+
+            </a>
+
+            <!-- ======================================
+                     REPORT CARDS
+            ======================================= -->
+
+            <a href="#"
+               class="nav-link d-flex align-items-center py-3">
+
+                <i class="bi bi-file-earmark-richtext fs-5"></i>
+
+                <span class="menu-text ms-3">
+
+                    Report Cards
+
+                </span>
+
+            </a>
+
+            <!-- ======================================
+                     FINANCE
+            ======================================= -->
+
+            <div class="accordion-item bg-transparent border-0">
+
+                <h2 class="accordion-header">
+
+                    <button class="accordion-button collapsed"
+                            type="button"
+                            data-bs-toggle="collapse"
+                            data-bs-target="#financeMenu">
+
+                        <i class="bi bi-cash-stack fs-5"></i>
+
+                        <span class="menu-text ms-3">
+
+                            Finance
+
+                        </span>
+
+                    </button>
+
+                </h2>
+
+                <div id="financeMenu"
+                     class="accordion-collapse collapse"
+                     data-bs-parent="#sidebarAccordion">
+
+                    <div class="accordion-body">
+
+                        <a href="#"
+                           class="nav-link">
+
+                            <i class="bi bi-wallet2"></i>
+
+                            <span class="menu-text ms-2">
+
+                                School Fees
+
+                            </span>
+
+                        </a>
+
+                        <a href="#"
+                           class="nav-link">
+
+                            <i class="bi bi-receipt"></i>
+
+                            <span class="menu-text ms-2">
+
+                                Payments
+
+                            </span>
+
+                        </a>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+            <!-- ======================================
+                     PARENTS
+            ======================================= -->
+
+            <a href="#"
+               class="nav-link d-flex align-items-center py-3">
+
+                <i class="bi bi-people-fill fs-5"></i>
+
+                <span class="menu-text ms-3">
+
+                    Parents Portal
+
+                </span>
+
+            </a>
+
+            <!-- ======================================
+                     SETTINGS
+            ======================================= -->
+
+            <a href="#"
+               class="nav-link d-flex align-items-center py-3">
+
+                <i class="bi bi-gear-fill fs-5"></i>
+
+                <span class="menu-text ms-3">
+
+                    Settings
+
+                </span>
+
+            </a>
 
         </div>
 
-        <div class="d-flex justify-content-between">
+        <!-- ======================================
+                 SYSTEM OVERVIEW
+        ======================================= -->
 
-            <span>Teachers</span>
+        <div class="system-overview mt-5">
 
-            <strong>{{ sidebar_teachers }}</strong>
+            <h6 class="text-uppercase text-secondary small mb-3">
 
-        </div>
+                System Overview
 
-        <div class="d-flex justify-content-between">
+            </h6>
 
-            <span>Classes</span>
+            <div class="card border-0 shadow-sm">
 
-            <strong>{{ sidebar_classes }}</strong>
+                <div class="card-body p-3">
+
+                    <div class="d-flex justify-content-between mb-3">
+
+                        <span>
+
+                            Students
+
+                        </span>
+
+                        <strong>
+
+                            {{ total_students|default:"0" }}
+
+                        </strong>
+
+                    </div>
+
+                    <div class="d-flex justify-content-between mb-3">
+
+                        <span>
+
+                            Teachers
+
+                        </span>
+
+                        <strong>
+
+                            {{ total_teachers|default:"0" }}
+
+                        </strong>
+
+                    </div>
+
+                    <div class="d-flex justify-content-between mb-3">
+
+                        <span>
+
+                            Classes
+
+                        </span>
+
+                        <strong>
+
+                            {{ total_classes|default:"0" }}
+
+                        </strong>
+
+                    </div>
+
+                    <div class="d-flex justify-content-between">
+
+                        <span>
+
+                            Subjects
+
+                        </span>
+
+                        <strong>
+
+                            {{ total_subjects|default:"0" }}
+
+                        </strong>
+
+                    </div>
+
+                </div>
+
+            </div>
 
         </div>
 
     </div>
 
-</div>
+</aside>

@@ -4,8 +4,19 @@ from .models import Subject
 
 @admin.register(Subject)
 class SubjectAdmin(admin.ModelAdmin):
+
     list_display = (
-        'code',
-        'name',
-        'description',
+        "code",
+        "name",
     )
+
+    search_fields = (
+        "code",
+        "name",
+    )
+
+    ordering = (
+        "name",
+    )
+
+    list_per_page = 20

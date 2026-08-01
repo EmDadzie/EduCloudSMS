@@ -1,0 +1,145 @@
+{% extends "base.html" %}
+
+{% block title %}
+Student Profile
+{% endblock %}
+
+{% block page_title %}
+
+<h2>
+
+    <i class="bi bi-person-badge-fill"></i>
+
+    Student Profile
+
+</h2>
+
+{% endblock %}
+
+{% block content %}
+
+<div class="card shadow-sm">
+
+    <div class="card-body">
+
+        <div class="row">
+
+            <div class="col-md-3 text-center">
+
+                {% if student.photo %}
+
+                    <img src="{{ student.photo.url }}"
+                         class="img-fluid rounded-circle">
+
+                {% else %}
+
+                    <i class="bi bi-person-circle"
+                       style="font-size:150px;"></i>
+
+                {% endif %}
+
+            </div>
+
+            <div class="col-md-9">
+
+                <h3>
+
+                    {{ student.first_name }}
+
+                    {{ student.last_name }}
+
+                </h3>
+
+                <div class="mb-3">
+
+                    <a href="{% url 'student_update' student.id %}"
+                    class="btn btn-warning">
+
+                        <i class="bi bi-pencil-square"></i>
+
+                        Edit
+
+                    </a>
+
+                    <a href="{% url 'student_delete' student.id %}"
+                    class="btn btn-danger">
+
+                        <i class="bi bi-trash-fill"></i>
+
+                        Delete
+
+                    </a>
+
+                </div>
+
+                <hr>
+
+                <table class="table">
+
+                    <tr>
+
+                        <th>Admission Number</th>
+
+                        <td>{{ student.admission_number }}</td>
+
+                    </tr>
+
+                    <tr>
+
+                        <th>Gender</th>
+
+                        <td>{{ student.gender }}</td>
+
+                    </tr>
+
+                    <tr>
+
+                        <th>Date of Birth</th>
+
+                        <td>{{ student.date_of_birth }}</td>
+
+                    </tr>
+
+                    <tr>
+
+                        <th>Class</th>
+
+                        <td>{{ student.class_room }}</td>
+
+                    </tr>
+
+                    <tr>
+
+                        <th>Parent</th>
+
+                        <td>{{ student.parent_name }}</td>
+
+                    </tr>
+
+                    <tr>
+
+                        <th>Phone</th>
+
+                        <td>{{ student.parent_phone }}</td>
+
+                    </tr>
+
+                    <tr>
+
+                        <th>Address</th>
+
+                        <td>{{ student.address }}</td>
+
+                    </tr>
+
+                </table>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+{% endblock %}

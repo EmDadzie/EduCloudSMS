@@ -1,0 +1,54 @@
+<script>
+
+document.addEventListener("DOMContentLoaded", function () {
+
+    const sidebar = document.getElementById("sidebar");
+
+    const pageWrapper = document.getElementById("page-wrapper");
+
+    const toggle = document.getElementById("sidebarToggle");
+
+    // Restore saved state
+    if(localStorage.getItem("sidebar") === "collapsed"){
+
+        sidebar.classList.add("collapsed");
+
+        pageWrapper.classList.add("expanded");
+
+    }
+
+    // Toggle sidebar
+    toggle.addEventListener("click", function(){
+
+        sidebar.classList.toggle("collapsed");
+
+        pageWrapper.classList.toggle("expanded");
+
+        if(sidebar.classList.contains("collapsed")){
+
+            localStorage.setItem("sidebar","collapsed");
+
+        }else{
+
+            localStorage.setItem("sidebar","expanded");
+
+        }
+
+    });
+
+    // Mobile menu
+    if(window.innerWidth < 992){
+
+        sidebar.classList.remove("collapsed");
+
+        toggle.addEventListener("click",function(){
+
+            sidebar.classList.toggle("show");
+
+        });
+
+    }
+
+});
+
+</script>

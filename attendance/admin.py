@@ -6,19 +6,24 @@ from .models import Attendance
 class AttendanceAdmin(admin.ModelAdmin):
 
     list_display = (
-        'student',
-        'date',
-        'status',
-        'recorded_by',
-    )
-
-    list_filter = (
-        'date',
-        'status',
+        "student",
+        "date",
+        "status",
     )
 
     search_fields = (
-        'student__first_name',
-        'student__last_name',
-        'student__admission_number',
+        "student__first_name",
+        "student__last_name",
+        "student__admission_number",
     )
+
+    list_filter = (
+        "status",
+        "date",
+    )
+
+    ordering = (
+        "-date",
+    )
+
+    list_per_page = 25

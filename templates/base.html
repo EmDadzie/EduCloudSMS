@@ -1,3 +1,4 @@
+{% load static %}
 <!DOCTYPE html>
 <html lang="en">
 
@@ -5,9 +6,21 @@
 
     <meta charset="UTF-8">
 
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
 
-    <title>EduCloudSMS</title>
+    <meta http-equiv="X-UA-Compatible"
+          content="IE=edge">
+
+    <title>
+
+        {% block title %}
+
+        EduCloudSMS
+
+        {% endblock %}
+
+    </title>
 
     <!-- Bootstrap -->
 
@@ -19,23 +32,76 @@
     <link rel="stylesheet"
           href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
 
+    <!-- Google Fonts -->
+
+    <link rel="preconnect"
+          href="https://fonts.googleapis.com">
+
+    <link rel="preconnect"
+          href="https://fonts.gstatic.com"
+          crossorigin>
+
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap"
+          rel="stylesheet">
+
+    <!-- Custom Styles -->
+
     {% include "includes/styles.html" %}
+
+    {% block extra_css %}
+
+    {% endblock %}
 
 </head>
 
 <body>
 
-<div class="container-fluid">
+<div id="app">
 
-    <div class="row">
+    <!-- ==========================
+            SIDEBAR
+    =========================== -->
 
-        {% include "includes/sidebar.html" %}
+    {% include "includes/sidebar.html" %}
 
-        <div class="col-lg-10 col-md-9">
+    <!-- ==========================
+            PAGE WRAPPER
+    =========================== -->
 
-            {% include "includes/topbar.html" %}
+    <div id="page-wrapper">
 
-            <div class="content">
+        <!-- ==========================
+                TOPBAR
+        =========================== -->
+
+        {% include "includes/topbar.html" %}
+
+        <!-- ==========================
+                MAIN CONTENT
+        =========================== -->
+
+        <main id="main-content">
+
+            <div class="container-fluid py-4">
+
+                {% if messages %}
+
+                    {% for message in messages %}
+
+                        <div class="alert alert-{{ message.tags }} alert-dismissible fade show">
+
+                            {{ message }}
+
+                            <button type="button"
+                                    class="btn-close"
+                                    data-bs-dismiss="alert">
+                            </button>
+
+                        </div>
+
+                    {% endfor %}
+
+                {% endif %}
 
                 {% block content %}
 
@@ -43,15 +109,29 @@
 
             </div>
 
-        </div>
+        </main>
+
+        <!-- ==========================
+                FOOTER
+        =========================== -->
+
+        {% include "includes/footer.html" %}
 
     </div>
 
 </div>
 
-{% include "includes/footer.html" %}
+<!-- Bootstrap -->
 
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+
+<!-- Custom Scripts -->
+
+{% include "includes/scripts.html" %}
+
+{% block extra_js %}
+
+{% endblock %}
 
 </body>
 

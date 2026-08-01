@@ -4,12 +4,31 @@ from .models import Student
 
 @admin.register(Student)
 class StudentAdmin(admin.ModelAdmin):
+
     list_display = (
-        'admission_number',
-        'first_name',
-        'last_name',
-        'gender',
-        'class_room',
-        'parent_name',
-        'parent_phone',
+        "admission_number",
+        "first_name",
+        "last_name",
+        "class_room",
+        "gender",
+        "parent_phone",
     )
+
+    search_fields = (
+        "admission_number",
+        "first_name",
+        "last_name",
+        "parent_name",
+        "parent_phone",
+    )
+
+    list_filter = (
+        "gender",
+        "class_room",
+    )
+
+    ordering = (
+        "admission_number",
+    )
+
+    list_per_page = 20

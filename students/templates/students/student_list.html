@@ -1,0 +1,254 @@
+{% extends "base.html" %}
+
+{% block title %}
+Students
+{% endblock %}
+
+{% block page_title %}
+
+<div class="d-flex justify-content-between align-items-center mb-4">
+
+    <h2>
+
+        <i class="bi bi-people-fill"></i>
+
+        Student Management
+
+    </h2>
+
+    <a href="{% url 'student_create' %}" class="btn btn-primary">
+
+        <i class="bi bi-person-plus-fill"></i>
+
+        Add Student
+
+    </a>
+
+</div>
+
+{% endblock %}
+
+{% block content %}
+
+<div class="card shadow-sm">
+
+    <div class="card-body">
+
+        <form method="GET" class="row mb-4">
+
+            <div class="col-md-6">
+
+                <input
+
+                    type="text"
+
+                    class="form-control"
+
+                    name="search"
+
+                    placeholder="Search name or admission number"
+
+                    value="{{ search }}">
+
+            </div>
+
+            <div class="col-md-4">
+
+                <select class="form-select" name="class">
+
+                    <option value="">All Classes</option>
+
+                    {% for class in classes %}
+
+                    <option value="{{ class.id }}"
+
+                        {% if selected_class == class.id|stringformat:"s" %}
+
+                        selected
+
+                        {% endif %}>
+
+                        {{ class.name }}
+
+                    </option>
+
+                    {% endfor %}
+
+                </select>
+
+            </div>
+
+            <div class="col-md-2">
+
+                <button class="btn btn-success w-100">
+
+                    Search
+
+                </button>
+
+            </div>
+
+        </form>
+
+        <table class="table table-hover align-middle">
+
+            <thead class="table-dark">
+
+                <tr>
+
+                    <th>Photo</th>
+
+                    <th>Admission</th>
+
+                    <th>Name</th>
+
+                    <th>Gender</th>
+
+                    <th>Class</th>
+
+                    <th></th>
+
+                </tr>
+
+            </thead>
+
+            <tbody>
+
+                {% for student in page_obj %}
+
+                <tr>
+
+                    <td>
+
+                        {% if student.photo %}
+
+                            <img src="{{ student.photo.url }}"
+
+                                 width="50"
+
+                                 height="50"
+
+                                 class="rounded-circle">
+
+                        {% else %}
+
+                            <i class="bi bi-person-circle fs-2"></i>
+
+                        {% endif %}
+
+                    </td>
+
+                    <td>
+
+                        {{ student.admission_number }}
+
+                    </td>
+
+                    <td>
+
+                        {{ student.first_name }}
+
+                        {{ student.last_name }}
+
+                    </td>
+
+                    <td>
+
+                        {{ student.gender }}
+
+                    </td>
+
+                    <td>
+
+                        {{ student.class_room }}
+
+                    </td>
+
+                    <td>
+
+                        <a href="{% url 'student_detail' student.id %}"
+                            class="btn btn-sm btn-outline-primary">
+
+                            <i class="bi bi-eye-fill"></i>
+
+                            View
+
+                        </a>
+
+                    </td>
+
+                </tr>
+
+                {% empty %}
+
+                <tr>
+
+                    <td colspan="6">
+
+                        No students found.
+
+                    </td>
+
+                </tr>
+
+                {% endfor %}
+
+            </tbody>
+
+        </table>
+
+        <nav>
+
+            <ul class="pagination justify-content-center">
+
+                {% if page_obj.has_previous %}
+
+                <li class="page-item">
+
+                    <a class="page-link"
+
+                       href="?page={{ page_obj.previous_page_number }}">
+
+                        Previous
+
+                    </a>
+
+                </li>
+
+                {% endif %}
+
+                <li class="page-item active">
+
+                    <span class="page-link">
+
+                        {{ page_obj.number }}
+
+                    </span>
+
+                </li>
+
+                {% if page_obj.has_next %}
+
+                <li class="page-item">
+
+                    <a class="page-link"
+
+                       href="?page={{ page_obj.next_page_number }}">
+
+                        Next
+
+                    </a>
+
+                </li>
+
+                {% endif %}
+
+            </ul>
+
+        </nav>
+
+    </div>
+
+</div>
+
+{% endblock %}

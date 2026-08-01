@@ -1,84 +1,57 @@
 {% extends "base.html" %}
 
-{% block content %}
+{% block title %}
+Dashboard | EduCloudSMS
+{% endblock %}
 
-<!-- Dashboard Header -->
+{% block page_title %}
 
-<div class="dashboard-header mb-4">
+<div class="d-flex justify-content-between align-items-center mb-4">
 
-    <div class="row align-items-center">
+    <div>
+        <h2 class="fw-bold">
+            <i class="bi bi-speedometer2"></i>
+            Dashboard
+        </h2>
 
-        <div class="col-md-8">
-
-            <h2 class="fw-bold mb-1">
-                Welcome back,
-                {{ request.user.first_name|default:request.user.username }} 👋
-            </h2>
-
-            <p class="text-muted mb-0">
-                Here's what's happening in your school today.
-            </p>
-
-        </div>
-
-        <div class="col-md-4 text-end">
-
-            <span class="badge bg-primary fs-6">
-
-                Academic Year:
-                {{ school.academic_year }}
-
-            </span>
-
-        </div>
-
+        <p class="text-muted mb-0">
+            Welcome to {{ school.school_name }}
+        </p>
     </div>
 
 </div>
 
-<!-- Statistics -->
+{% endblock %}
 
-<div class="row g-4">
+{% block content %}
 
-    <!-- Students -->
+<!-- ========================= -->
+<!-- Statistics Cards -->
+<!-- ========================= -->
 
-    <div class="col-md-3">
+<div class="row g-4 mb-4">
 
-        <div class="card stat-card student-card shadow-sm">
+    <div class="col-lg-3 col-md-6">
+
+        <div class="card border-0 shadow-sm">
 
             <div class="card-body">
 
-                <div class="d-flex justify-content-between align-items-center">
+                <div class="d-flex justify-content-between">
 
                     <div>
 
-                        <h6 class="text-muted">Students</h6>
+                        <h6 class="text-muted">
+                            Students
+                        </h6>
 
                         <h2 class="fw-bold">
                             {{ total_students }}
                         </h2>
 
-                        <small class="text-muted">
-                            Registered Students
-                        </small>
-
-                        <div class="mt-2">
-
-                            <span class="text-success fw-semibold">
-
-                                ▲ Operational
-
-                            </span>
-
-                        </div>
-
                     </div>
 
-                    <div class="stat-icon students">
-
-                        <i class="bi bi-people-fill"></i>
-
-                    </div>
+                    <i class="bi bi-people-fill text-primary fs-1"></i>
 
                 </div>
 
@@ -88,45 +61,27 @@
 
     </div>
 
-    <!-- Teachers -->
+    <div class="col-lg-3 col-md-6">
 
-    <div class="col-md-3">
-
-        <div class="card stat-card teacher-card shadow-sm">
+        <div class="card border-0 shadow-sm">
 
             <div class="card-body">
 
-                <div class="d-flex justify-content-between align-items-center">
+                <div class="d-flex justify-content-between">
 
                     <div>
 
-                        <h6 class="text-muted">Teachers</h6>
+                        <h6 class="text-muted">
+                            Teachers
+                        </h6>
 
                         <h2 class="fw-bold">
                             {{ total_teachers }}
                         </h2>
 
-                        <small class="text-muted">
-                            Active Teachers
-                        </small>
-
-                        <div class="mt-2">
-
-                            <span class="text-success fw-semibold">
-
-                                ▲ Operational
-
-                            </span>
-
-                        </div>
-
                     </div>
 
-                    <div class="stat-icon teachers">
-
-                        <i class="bi bi-person-workspace"></i>
-
-                    </div>
+                    <i class="bi bi-person-workspace text-success fs-1"></i>
 
                 </div>
 
@@ -136,45 +91,27 @@
 
     </div>
 
-    <!-- Classes -->
+    <div class="col-lg-3 col-md-6">
 
-    <div class="col-md-3">
-
-        <div class="card stat-card class-card shadow-sm">
+        <div class="card border-0 shadow-sm">
 
             <div class="card-body">
 
-                <div class="d-flex justify-content-between align-items-center">
+                <div class="d-flex justify-content-between">
 
                     <div>
 
-                        <h6 class="text-muted">Classes</h6>
+                        <h6 class="text-muted">
+                            Classes
+                        </h6>
 
                         <h2 class="fw-bold">
                             {{ total_classes }}
                         </h2>
 
-                        <small class="text-muted">
-                            Available Classes
-                        </small>
-
-                        <div class="mt-2">
-
-                            <span class="text-success fw-semibold">
-
-                                ▲ Operational
-
-                            </span>
-
-                        </div>
-
                     </div>
 
-                    <div class="stat-icon classes">
-
-                        <i class="bi bi-building"></i>
-
-                    </div>
+                    <i class="bi bi-door-open-fill text-warning fs-1"></i>
 
                 </div>
 
@@ -184,45 +121,27 @@
 
     </div>
 
-    <!-- Subjects -->
+    <div class="col-lg-3 col-md-6">
 
-    <div class="col-md-3">
-
-        <div class="card stat-card subject-card shadow-sm">
+        <div class="card border-0 shadow-sm">
 
             <div class="card-body">
 
-                <div class="d-flex justify-content-between align-items-center">
+                <div class="d-flex justify-content-between">
 
                     <div>
 
-                        <h6 class="text-muted">Subjects</h6>
+                        <h6 class="text-muted">
+                            Subjects
+                        </h6>
 
                         <h2 class="fw-bold">
                             {{ total_subjects }}
                         </h2>
 
-                        <small class="text-muted">
-                            Subjects Offered
-                        </small>
-
-                        <div class="mt-2">
-
-                            <span class="text-success fw-semibold">
-
-                                ▲ Operational
-
-                            </span>
-
-                        </div>
-
                     </div>
 
-                    <div class="stat-icon subjects">
-
-                        <i class="bi bi-book-fill"></i>
-
-                    </div>
+                    <i class="bi bi-book-fill text-danger fs-1"></i>
 
                 </div>
 
@@ -234,15 +153,97 @@
 
 </div>
 
+<!-- ========================= -->
+<!-- Academic Cards -->
+<!-- ========================= -->
+
+<div class="row g-4">
+
+    <div class="col-lg-6">
+
+        <div class="card shadow-sm border-0">
+
+            <div class="card-header bg-primary text-white">
+
+                <h5 class="mb-0">
+
+                    <i class="bi bi-calendar-check"></i>
+
+                    Attendance
+
+                </h5>
+
+            </div>
+
+            <div class="card-body">
+
+                <p class="mb-2">
+
+                    Total Attendance Records
+
+                </p>
+
+                <h2 class="fw-bold">
+
+                    {{ total_attendance }}
+
+                </h2>
+
+            </div>
+
+        </div>
+
+    </div>
+
+    <div class="col-lg-6">
+
+        <div class="card shadow-sm border-0">
+
+            <div class="card-header bg-success text-white">
+
+                <h5 class="mb-0">
+
+                    <i class="bi bi-journal-check"></i>
+
+                    Assessments
+
+                </h5>
+
+            </div>
+
+            <div class="card-body">
+
+                <p class="mb-2">
+
+                    Total Assessments
+
+                </p>
+
+                <h2 class="fw-bold">
+
+                    {{ total_assessments }}
+
+                </h2>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+<!-- ========================= -->
 <!-- Quick Actions -->
+<!-- ========================= -->
 
-<div class="card shadow mt-5">
+<div class="card shadow-sm border-0 mt-4">
 
-    <div class="card-header bg-white">
+    <div class="card-header">
 
-        <h5 class="mb-0">
+        <h5>
 
-            <i class="bi bi-lightning-charge-fill text-warning"></i>
+            <i class="bi bi-lightning-charge-fill"></i>
 
             Quick Actions
 
@@ -255,31 +256,55 @@
         <div class="row text-center g-3">
 
             <div class="col-md-3">
-                <a href="/admin/students/student/add/" class="btn btn-primary w-100">
-                    <i class="bi bi-person-plus-fill"></i>
-                    Add Student
+
+                <a href="{% url 'student_list' %}"
+                   class="btn btn-primary w-100">
+
+                    <i class="bi bi-person-plus-fill"></i><br>
+
+                    Students
+
                 </a>
+
             </div>
 
             <div class="col-md-3">
-                <a href="/admin/teachers/teacher/add/" class="btn btn-success w-100">
-                    <i class="bi bi-person-workspace"></i>
-                    Add Teacher
+
+                <a href="/admin/teachers/teacher/"
+                   class="btn btn-success w-100">
+
+                    <i class="bi bi-person-workspace"></i><br>
+
+                    Teachers
+
                 </a>
+
             </div>
 
             <div class="col-md-3">
-                <a href="/admin/attendance/attendance/" class="btn btn-warning w-100">
-                    <i class="bi bi-calendar-check-fill"></i>
-                    Take Attendance
+
+                <a href="/admin/classes/classroom/"
+                   class="btn btn-warning w-100">
+
+                    <i class="bi bi-door-open-fill"></i><br>
+
+                    Classes
+
                 </a>
+
             </div>
 
             <div class="col-md-3">
-                <a href="/admin/assessments/score/" class="btn btn-dark w-100">
-                    <i class="bi bi-pencil-square"></i>
-                    Enter Scores
+
+                <a href="/admin/attendance/attendance/"
+                   class="btn btn-danger w-100">
+
+                    <i class="bi bi-calendar-check-fill"></i><br>
+
+                    Attendance
+
                 </a>
+
             </div>
 
         </div>
